@@ -29,6 +29,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 @login_required
 def index():
     form = ChannelForm()
+    print(session.get('user'))
     user = session.get('user')
     isChannel = False
     return render_template('index.html', form=form, user=user, channel=CHANNELS, isChannel=isChannel)
@@ -50,12 +51,13 @@ def new_channel(data):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    print(USERS)
     display_name = form.display_name.data
     if form.validate_on_submit():
         if display_name not in USERS:
             session['user'] = display_name
             USERS.append(display_name)
+            print(session.get('user'))
+            print(USERS)
             return redirect('/')
         else:
             session['user'] = display_name
