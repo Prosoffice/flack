@@ -80,7 +80,7 @@ def login():
 @app.route('/channel/<name>', methods=['GET', 'POST'])
 def channel(name):
     form = ChannelForm()
-    user = session['user']
+    user = session.get('user')
     isChannel = True
     return render_template('test.html', CHANNELS=CHANNELS[name], channel=CHANNELS, c=name, user=user, form=form, isChannel=isChannel)
 
