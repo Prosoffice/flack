@@ -4,7 +4,7 @@ from wtforms.validators import InputRequired
 
 
 class LoginForm(FlaskForm):
-    display_name = IntegerField("Display name", validators=[InputRequired()], render_kw={'placeholder': 'Frank Lewis', 'class':'input100'})
+    display_name = StringField("Display name", validators=[InputRequired()], render_kw={'placeholder': 'Frank Lewis', 'class':'input100'})
 
 
 class ChannelForm(FlaskForm):
