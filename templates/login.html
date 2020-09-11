@@ -13,9 +13,9 @@
     </div>
 
     
-        <form class="" method="post">
+        <form class="" method="post" novalidate>
+            {{ form.hidden_tag() }}
             <div class="login">
-                {{ form.hidden_tag() }}
                 <div class="wrap-input100">
                     {{ form.display_name }}
                 </div>
