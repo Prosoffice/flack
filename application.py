@@ -14,7 +14,6 @@ from helpers import login_required
 app = Flask(__name__)
 socketio = SocketIO(app)
 Bootstrap(app)
-csrf = CSRFProtect(app)
 
 
 USERS = []
