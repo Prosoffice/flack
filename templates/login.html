@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %} First {% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" type="text/css">
+{% endblock %}
+
+{% block main %}
+    <div class="intro">
+        <h1>Welcome to Flack</h1>
+        <p>an online realtime chat room...</p>
+    </div>
+
+    
+        <form class="" method="post">
+            <div class="login">
+                {{ form.hidden_tag() }}
+                <div class="wrap-input100">
+                    {{ form.display_name }}
+                </div>
+                <div class="text-center p-t-115">
+                    <span class="txt1">
+                       <i>Type in a display name</i> 
+                    </span>
+                </div>
+            </div>
+            <div class="container-login100-form-btn">
+                <div class="wrap-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Enter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+
+            
+        </form>
+
+
+    
+{% endblock %}

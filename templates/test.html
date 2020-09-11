@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block stylesheet%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}" type="text/css">
+{%endblock%}
+
+{% block title %}
+    {{ c }}
+{% endblock%}
+
+
+{% block content %}
+    <div class="chat-page" >
+        <div class="msg-inbox">
+            <div class="chats">
+                <div class="msg-page">
+                    {% for i in CHANNELS['chats'] %}
+                    
+                    <div class="received-chats">
+                        <div class="received-chats-img">
+                            <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+                        </div>
+                        
+                        <div class="received-msg">
+                            <div class="received-msg-inbox">
+                                <span class="time" >
+                                    <strong>{{i['name']}}</strong> {{i['time']}}
+                                </span>
+                                <p>{{ i['chat'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+{% endblock %}
+
+
+{% block custom_script %}
+ <script src="{{url_for('static', filename='channel.js')}}"></script>
+ <script src="{{url_for('static', filename='index.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,221 @@
+
+.container-fluid{
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+
+img{
+    max-width: 100%;
+    height: 50px;
+    border-radius: 50%
+}
+
+.msg-header{
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 10%;
+    border-bottom: none;
+    display: inline-block;
+    background-color: purple;
+}
+
+.msg-header-img{
+    border-radius:50%;
+    width: 50px;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 12px;
+    float: left;
+}
+
+.active{
+    width: 120px;
+    float: left;
+    margin-top:10px;
+}
+
+.active h4{
+    min-width: 500px;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #fff;
+}
+
+.active h6{
+    font-size: 10px;
+    margin-left: 10px;
+    line-height: 2;
+    color: #fff;
+}
+
+.header-icons{
+    float: right;
+    width: 120px;
+    margin-top: 12px;
+    margin-right: 10px;
+}
+
+.header-icons .fa{
+    color: #fff;
+    cursor: pointer;
+    margin: 10px
+}
+
+.chat-page{
+    padding: 0 0 50px 0;
+}
+
+.msg-inbox{
+    margin-top: -16px;
+    border: 1px solid #ccc;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+
+.chats
+{
+    padding: 30px 15px 0 25px;
+}
+
+.msg-page
+{
+    height: 516px;
+    overflow-y: auto;
+}
+
+.received-chats-img
+{ 
+    float: left;
+}
+
+.received-msg
+{
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: top;
+    max-width: 50%;
+}
+
+.received-msg-inbox
+{
+    width: 100%;
+}
+
+.received-msg-inbox p
+{
+   background: #efefef;
+   border-top-right-radius: 20px;
+   border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px;
+   color: #646464;
+   font-size: 14px;
+   margin:0;
+   padding: 5px 10px 5px 12px;
+   width: 100%
+}
+
+.time
+{
+    color: #777;
+    display: block;
+    font-size: 12px;
+
+}
+
+.time strong
+{
+    color: black;
+    font-size: medium;
+}
+
+
+
+
+.msg-buttom
+{
+    position: relative;
+    background: purple;
+    padding-bottom: 50px;
+
+}
+
+.input-group
+{
+    float: right;
+    margin-top: 13px;
+    margin-right: 20px;
+    outline: none !important;
+    border-radius: 20px;
+    width: 150% !important;
+    background-color: #fff;
+
+}
+
+form{
+    height: 5px;
+}
+
+.form-control
+{
+    border: none !important;
+    border-radius: 20px;
+    width: 260%;
+    margin-top: 8.4px;
+}
+
+.input-grp-text
+{
+    background: transparent;
+    border: none !important;
+}
+
+.input-grp .fa
+{
+    color: skyblue
+    
+    ;
+    float: right;
+}
+
+.input-grp button
+{
+    border: none;
+    background: #fff;
+}
+
+.input-group-append
+{
+    position: relative;
+    right: 10px;
+    top: 10px;
+    left: 370px;
+}
+
+.buttom-icons
+{
+    float: left;
+    margin-top: 17px;
+    width: 30% !important;
+    margin-left: 22px;
+}
+
+.buttom-icons .fa
+{
+    color: #fff;
+    padding: 5px;
+}
+
+.form-control:focus
+{
+    border-color: none !important;
+    box-shadow: none !important;
+    border-radius: 20px;
+}
+
+
+.form-control
+{
+    width: 290%;
+}

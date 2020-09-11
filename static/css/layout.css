@@ -1,0 +1,43 @@
+
+
+.nav-item{
+    border: 1px solid #eeecda ;
+    margin-right: 2rem;
+    padding: 0 5px;
+}
+
+.navbar-nav{
+    margin-left: auto !important;
+}
+
+nav{
+    background-color: #706c61 !important;
+}
+
+.n{
+    background-color: #706c61 !important;
+}
+
+.n .nav-link{
+    color: #eeecda !important;
+}
+
+.n .navbar-brand{
+    color: #eeecda !important;
+}
+
+html{
+    position: relative;
+    height: 100%;
+    overflow-y: initial;
+}
+
+body{
+    position: relative;
+    height: inherit;
+}
+
+.main{
+    position: relative;
+    height: inherit;
+}

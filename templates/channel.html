@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Channel
+{% endblock %}
+
+{% block stylesheet%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/channel.css') }}" type="text/css">
+{%endblock%}
+
+
+{% block main %}
+    <div class="msg-header">
+        <div class="msg-header-img">
+            <img src="{{ url_for('static', filename='img/head.jpg') }}">
+        </div>
+        <div class="active">
+            <h4>{{ channel }}</h4>
+            <h6>2 members</h6>
+        </div>
+        <div class="header-icons">
+            <i class="fa fa-phone"></i>
+            <i class="fa fa-video-camera"></i>
+            <i class="fa fa-info-circle"></i>
+        </div>
+    </div>
+
+    <div class="chat-page">
+        <div class="msg-inbox">
+            <div class="chats">
+                <div class="msg-page">
+                    {% for i in CHANNELS['chats'] %}
+                    
+                    <div class="received-chats">
+                        <div class="received-chats-img">
+                            <i class="fa fa-user-circle fa-3x"></i>
+                        </div>
+                        
+                        <div class="received-msg">
+                            <div class="received-msg-inbox">
+                                <span class="time">
+                                    <strong>{{i['name']}}</strong> {{i['time']}}
+                                </span>
+                                <p>{{ i['chat'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="msg-buttom">
+            <div class="buttom-icons">
+                <i class="fa fa-plus-circle"></i>
+                <i class="fa fa-camera"></i>
+                <i class="fa fa-microphone"></i>
+                <i class="fa fa-smile-o"></i>
+            </div>
+
+            <div class="input-grp">
+                <form id='new-chat' class="form-row mt-5" method="post">
+                    {{ form.hidden_tag() }}
+                    <div class="input=group">
+                    <input type="submit" class="form-control in" data-user="{{ user }}" id="chat" placeholder="Write message here">
+                    </div>
+                    <div class="input-group-append">
+                        <span class="" >
+                            <button id="submit" name="submit" type="submit"><i class="fa fa-paper-plane fa-2x"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- <form action="" id='new-chat' class="form-row mt-5" method="post">
+        {{ form.hidden_tag() }}
+        <div class="form-group col-6" data-user="{{ user }}">
+            {{ wtf.form_field(form.chat) }}
+        </div>
+        <div class="form-group col-6 mt-4">
+            <button class="btn btn-primary" type="submit" id="">Send</button>
+        </div>
+    </form> -->
+
+
+
+
+
+    {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="{{url_for('static', filename='channel.js')}}"></script>
+    {% endblock %}
+    
+{% endblock %}

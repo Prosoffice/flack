@@ -1,0 +1,41 @@
+.received-chats-img{
+    float: left;
+    padding-right: 1%;
+    clear: left;
+}
+
+.received-msg-inbox p{
+    text-align: justify;
+}
+
+.type-wrapper-inner form{
+    display: block;
+}
+
+.msg-page{
+    margin-bottom: 4rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 73vh;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #706c61;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

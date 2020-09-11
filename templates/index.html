@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" type="text/css">
+{% endblock %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="bg_shadow"></div>
+            <div class="sidebar__inner">
+                <div class="close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+                <div class="profile_info">
+                    <div class="profile__img">
+                        <i class="fa fa-user-circle fa-4x"></i>
+                    </div>
+                    <div class="profile_data">
+                        <div class="name">{{ user }}</div>
+                        <div class="role">User</div>
+                        <div class="btn create">Create channel</div>
+                    </div>
+                </div>
+                <ul class="sidebar_menu" id="channelList">
+                    {% for i in channel %}     
+                    <li><a href="{{ channel[i]['link'] }}" class="room">                 
+                        <div class="icon"><i class="fa fa-hashtag" aria-hidden="true"></i></div>
+                        <div class="title">{{ i }}</div>
+                    </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="main_container">
+            
+            {% if isChannel %}
+            <div class="un type-wrapper">
+                <div class="type-wrapper-inner">
+                    <div class="input_box">
+                        <span class='new-chat'  data-user="{{ user }}">
+                            <input type="text" placeholder="Message Channel here" data-user="{{ user }}" class="chat">
+                           
+                            <span class="bolt" data-room="{{ c }}"><i class="fa fa-bolt " aria-hidden="true"></i></span>
+                                <span class="send submit" name="submit" >
+                                    <i class="fa fa-paper-plane " aria-hidden="true"></i>
+                                </span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            {% endif %}
+
+            
+            
+
+            <div class="top_navbar fixed-top">
+                <div class="hamburger">
+                    <div class="hamburger_inner">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <ul class="menu">
+                    {% if isChannel %}
+                    <li><a href="/">Home</a></li>                   
+                    <li><a href="#" class="active">Channel</a></li>      
+                    <li><a href="https://github.com/Prosoffice">Developer</a></li>
+
+                    {% else %}
+                    <li><a href="/" class="active">Home</a></li>     
+                    <li><a href="https://github.com/Prosoffice">Developer</a></li>
+                    {% endif %}
+                    
+                </ul>
+
+                <ul class="side_menu">
+                    <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+
+
+            
+            
+
+            <div class="container_">
+
+                <div class="box">
+                    <form action="" id='newChannel' class="mt-5" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group" data-user="{{ user }}">
+                            
+                            {{ wtf.form_field(form.channel_name) }}
+                            
+                        </div>
+                        <button class="btn btn-dark" type="submit" id="submit">Create</button>
+                    </form>
+                    <p class="error"></p>
+                </div>
+
+                
+                
+                {% block content %}
+                <div class="item">{{ user }}, Welcome to Flack, your anonimity is guaranteed, Please utilise the menu to create or join a group.</div>
+                {% endblock %}
+
+                
+            
+        </div>
+
+        
+    </div>
+
+    
+    
+
+
+
+    {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    {% block custom_script %}<script src="{{url_for('static', filename='index.js')}}"></script>{% endblock %}
+    {% endblock %}
+{% endblock %}
