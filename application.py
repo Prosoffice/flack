@@ -63,6 +63,7 @@ def login():
     form = LoginForm()
     display_name = form.display_name.data
     if form.validate_on_submit():
+        print('valid')
         if display_name not in USERS:
             session['user'] = display_name
             USERS.append(display_name)
