@@ -81,6 +81,7 @@ def login():
 def channel(name):
     form = ChannelForm()
     user = session.get('user')
+    print(user)
     isChannel = True
     return render_template('test.html', CHANNELS=CHANNELS.get(name), channel=CHANNELS, c=name, user=user, form=form, isChannel=isChannel)
 
