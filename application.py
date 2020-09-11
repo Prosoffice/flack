@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from flask import Flask, render_template, redirect, session, Session, request
+from flask import Flask, render_template, redirect, session, request
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_bootstrap import Bootstrap
 from flask_wtf.csrf import CSRFProtect
