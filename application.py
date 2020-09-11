@@ -35,7 +35,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 #         return redirect(url, code=code)
 
 
-
+@csrf.exempt
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
@@ -58,7 +58,7 @@ def new_channel(data):
     elif channel_name in CHANNELS:
         emit('channel created and added', "duplicate", broadcast=True)
 
-
+@csrf.exempt
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
