@@ -109,6 +109,11 @@ button{
     font-weight: 700;
 }
 
+.alert-error{
+    color: red;
+    font-size: 2rem;
+    text-align: center;
+}
   
 
 @media screen and (max-width: 800px){
