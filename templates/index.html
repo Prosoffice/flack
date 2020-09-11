@@ -41,7 +41,7 @@
 
         <div class="main_container">
             
-            {% if isChannel %}
+
             <div class="un type-wrapper">
                 <div class="type-wrapper-inner">
                     <div class="input_box">
@@ -57,7 +57,6 @@
                 </div>
 
             </div>
-            {% endif %}
 
             
             
@@ -71,7 +70,7 @@
 
                 <ul class="menu">
                     {% if isChannel %}
-                    <li><a href="/">Home</a></li>                   
+                    <li><a href="/" class="home" data-isHome="True">Home</a></li>                   
                     <li><a href="#" class="active">Channel</a></li>      
                     <li><a href="https://github.com/Prosoffice">Developer</a></li>
 
@@ -126,6 +125,6 @@
 
     {% block script %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    {% block custom_script %}<script src="{{url_for('static', filename='index.js')}}"></script>{% endblock %}
+    <script src="{{url_for('static', filename='index.js')}}"></script>
     {% endblock %}
 {% endblock %}
