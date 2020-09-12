@@ -24,7 +24,7 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 
-Make sessions permanent
+# Make sessions permanent
 @app.before_request
 def before_request():
     session.permanent = True
