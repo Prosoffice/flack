@@ -3,7 +3,6 @@ from datetime import datetime
 from flask import Flask, render_template, redirect, session, request
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_bootstrap import Bootstrap
-from flask_wtf.csrf import CSRFProtect
 
 from collections import deque
 
@@ -14,7 +13,6 @@ from helpers import login_required
 app = Flask(__name__)
 socketio = SocketIO(app)
 Bootstrap(app)
-csrf = CSRFProtect(app)
 
 
 USERS = []
@@ -35,7 +33,7 @@ def before_request():
         return redirect(url, code=code)
 
 
-@csrf.exempt
+
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
@@ -58,13 +56,13 @@ def new_channel(data):
     elif channel_name in CHANNELS:
         emit('channel created and added', "duplicate", broadcast=True)
 
-@csrf.exempt
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     display_name = form.display_name.data
-    if form.validate_on_submit():
-        print('valid')
+    print('valid')
+    if request.method == 'POST':
         if display_name not in USERS:
             session['user'] = display_name
             USERS.append(display_name)
