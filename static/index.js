@@ -68,7 +68,7 @@ function updateDOM (name, chat, time){
 
 document.addEventListener('DOMContentLoaded', () => {
     // connect to websocket
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port, { transports: ['websocket'] });
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
 
     // Disable the button as it is empty from the start
