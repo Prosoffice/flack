@@ -35,7 +35,6 @@ def before_request():
 
 
 @app.route('/', methods=['GET', 'POST'])
-@login_required
 def index():
     form = ChannelForm()
     print(session.get('user'))
