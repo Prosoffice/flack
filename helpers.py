@@ -2,7 +2,7 @@ from flask import session, redirect
 from functools import wraps 
 
 def login_required(f):
-    wraps(f)
+    @wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get('user') is None:
             return redirect('/login')

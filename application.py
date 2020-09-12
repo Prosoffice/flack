@@ -23,18 +23,19 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 # Make sessions permanent
-@app.before_request
-def before_request():
-    session.permanent = True
-    # Force https (src: https://stackoverflow.com/questions/32237379/python-flask-redirect-to-https-from-http)
-    if request.url.startswith('http://'):
-        url = request.url.replace('http://', 'https://', 1)
-        code = 301
-        return redirect(url, code=code)
+#@app.before_request
+#def before_request():
+#    session.permanent = True
+#    # Force https (src: https://stackoverflow.com/questions/32237379/python-flask-redirect-to-https-from-http)
+#    if request.url.startswith('http://'):
+#        url = request.url.replace('http://', 'https://', 1)
+#        code = 301
+#        return redirect(url, code=code)
 
 
 
 @app.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     form = ChannelForm()
     print(session.get('user'))
@@ -78,6 +79,7 @@ def login():
 
 
 @app.route('/channel/<name>', methods=['GET', 'POST'])
+@login_required
 def channel(name):
     form = ChannelForm()
     user = session.get('user')
@@ -92,7 +94,7 @@ def new_message(data):
     channel_name = data['channel']
     chat = data['chat']
     user = data['user']
-    CHANNELS[channel_name]['chats'].append({'name':user, 'chat': chat, 'time': time})
+    CHANNELS.get(channel_name)['chats'].append({'name':user, 'chat': chat, 'time': time})
     data = {'name':user, 'chat': chat, 'time': time, 'room': channel_name}
     emit('message stored', data, room=channel_name)
 
@@ -130,3 +132,5 @@ def logout():
 
     # Redirect user to login form
     return redirect("/login")
+
+
