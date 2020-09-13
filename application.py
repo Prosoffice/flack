@@ -41,6 +41,7 @@ def index():
     print("Login page-User has just been redirected here to the login page")
     form = ChannelForm()
     print("The user`s name as session tells me is ", session.get('user'))
+    print("On index page all channels equals", CHANNELS)
     user = session.get('user')
     isChannel = False
     return render_template('index.html', form=form, user=user, channel=CHANNELS, isChannel=isChannel)
@@ -92,6 +93,7 @@ def channel(name):
     if name in CHANNELS.keys():
         print(name, "is in the mega channels list")
     form = ChannelForm()
+    print("On channels page all channels equals", CHANNELS)
     user = session.get('user')
     isChannel = True
     return render_template('test.html', CHANNELS=CHANNELS.get(name), channel=CHANNELS, c=name, user=user, form=form, isChannel=isChannel)
