@@ -32,6 +32,13 @@ def before_request():
         code = 301
         return redirect(url, code=code)
 
+# Ensure responses aren't cached
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control{{ i[4] }}"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
 
 
 @app.route('/', methods=['GET', 'POST'])

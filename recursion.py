@@ -17,5 +17,21 @@ def collats(n):
             return counter + collats(new_n)
 
 
-n = int(input("Type in a number to see its collats: "))
-print(collats(n))
+def optional(n, freq=1):
+    return(f'Your n is {n} and your second argument is now {freq}')
+
+def main():
+
+    n = int(input('Type in an n: '))
+
+    question = input('Do you have an f?: ')
+
+    if question == 'no':
+        print(optional(n))
+
+    elif question == 'yes':
+        freq = int(input('What is your freq?: '))
+        print(optional(n, freq))
+
+
+main()
