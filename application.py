@@ -18,7 +18,7 @@ Bootstrap(app)
 USERS = []
 CHANNELS = {'general':{'link':'/channel/general', 'owner': 'default', 'chats':  [ {'name': 'Frank', 'chat': "I love you so much, Hi! this is message, i cant stop thinking about you, you make me laugh", 'time': '10pm'}]}}
 
-SECRET_KEY = os.urandom(32)
+SECRET_KEY = '83iarCVG3MEjAKW'
 app.config['SECRET_KEY'] = SECRET_KEY
 
 
