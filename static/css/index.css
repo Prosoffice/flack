@@ -400,7 +400,7 @@ body{
 
 
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1000px){
     .wrapper .sidebar .sidebar__inner{
         left: -100%;
     }
