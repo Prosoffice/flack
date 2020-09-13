@@ -38,8 +38,9 @@ def before_request():
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
+    print("Login page-User has just been redirected here to the login page")
     form = ChannelForm()
-    print(session.get('user'))
+    print("The user`s name as session tells me is ", session.get('user'))
     user = session.get('user')
     isChannel = False
     return render_template('index.html', form=form, user=user, channel=CHANNELS, isChannel=isChannel)
@@ -62,16 +63,18 @@ def new_channel(data):
 def login():
     form = LoginForm()
     display_name = form.display_name.data
-    print('valid')
     if request.method == 'POST':
+        print('valid')
         if display_name not in USERS:
             session['user'] = display_name
+            print("User attach to session")
             USERS.append(display_name)
-            print(session.get('user'))
-            print(USERS)
-            print('This user is logged in right now')
+            print("User appended to users list")
+            print("Users list now ", USERS)
+            print("Redirecting user to login page now.....")
             return redirect('/')
         else:
+            print('User has been here before')
             session['user'] = display_name
             return redirect('/')
     return render_template("login.html", form=form)
@@ -82,6 +85,7 @@ def login():
 @app.route('/channel/<name>', methods=['GET', 'POST'])
 @login_required
 def channel(name):
+    print("Channel page- user is here in the channel page by name ", name)
     form = ChannelForm()
     user = session.get('user')
     print(user)
