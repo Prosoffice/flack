@@ -329,6 +329,7 @@ body{
     height: 32px;
     box-sizing: border-box;
     padding-left: 40px;
+    padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
     transition: 0.3s;
@@ -454,7 +455,7 @@ body{
     }
 
     .box{
-    	width: 50%;
+    	width: 70%;
     }
 }
 
@@ -470,7 +471,7 @@ body{
     }
 	
     .box{
-        width: 50%;
+        width: 70%;
     }
 
 }
