@@ -178,8 +178,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelector(".create").addEventListener('click', () => {
+	document.querySelector(".wrapper").classList.remove("active");
         document.querySelector(".box").classList.add("show");
         document.querySelector('.bg_shadow').classList.add("active");
+    });
+
+    document.querySelector(".close-box").addEventListener('click', () => {
+    	document.querySelector(".box").classList.remove("show");
+	document.querySelector(".bg_shadow").classList.remove("active");
     });
 
 

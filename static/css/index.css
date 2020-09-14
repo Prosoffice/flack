@@ -259,7 +259,8 @@ body{
     display: none;
 }
 
-.wrapper .close:hover{
+.wrapper .close:hover,
+.close-box:hover{
     opacity: 0.5;
 }
 
@@ -375,6 +376,14 @@ body{
     display: none;
 }
 
+.close-box .fa-times{
+   cursor: pointer;
+   position: absolute;
+   top: 2px;
+   right: 2px;
+   font-size: 1.6rem;
+}
+
 
 
 /* width */
@@ -434,11 +443,34 @@ body{
     .wrapper .main_container .type-wrapper{
         margin-left: 0;
     }
+
+    .wrapper .main_container .top_navbar .menu{
+        display: flex;
+        vertical-align: top;
+    }
+
+    .channel-mobile{
+    	display: none;
+    }
+
+    .box{
+    	width: 50%;
+    }
 }
 
 
 @media screen and (max-width: 530px){
     .wrapper .main_container .top_navbar .menu{
+        display: flex;
+	vertical-align: top;
+    }
+
+     .channel-mobile{
         display: none;
     }
+	
+    .box{
+        width: 50%;
+    }
+
 }

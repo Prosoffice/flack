@@ -71,7 +71,7 @@
                 <ul class="menu">
                     {% if isChannel %}
                     <li><a href="/" class="home" data-isHome="True">Home</a></li>                   
-                    <li><a href="#" class="active">Channel</a></li>      
+                    <li><a href="#" class="active channel-mobile">Channel</a></li>      
                     <li><a href="https://github.com/Prosoffice">Developer</a></li>
 
                     {% else %}
@@ -93,7 +93,11 @@
             <div class="container_">
 
                 <div class="box">
-                    <form action="" id='newChannel' class="mt-5" method="post" novalidate>
+	             <div class="close-box">
+        	        <i class="fa fa-times" aria-hidden="true"></i>
+   	             </div>
+
+                    <form action="" id='newChannel' class="mt-3" method="post" novalidate>
                         {{ form.hidden_tag() }}
                         <div class="form-group" data-user="{{ user }}">
                             
