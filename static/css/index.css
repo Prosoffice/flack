@@ -210,7 +210,7 @@ body{
 
 .wrapper .main_container .top_navbar .menu li a.active::before,
 .wrapper .main_container .top_navbar .menu li a:hover::before{
-    display: block;
+    display: display;
 }
 
 .wrapper .main_container .top_navbar .side_menu{
@@ -457,13 +457,17 @@ body{
     .box{
     	width: 70%;
     }
+
+
+
+    
 }
 
 
 @media screen and (max-width: 530px){
     .wrapper .main_container .top_navbar .menu{
         display: flex;
-	vertical-align: top;
+        /* margin-left: auto; */
     }
 
      .channel-mobile{
@@ -473,5 +477,7 @@ body{
     .box{
         width: 70%;
     }
+
+
 
 }
