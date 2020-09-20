@@ -5,7 +5,8 @@
 }
 
 .received-msg-inbox p{
-    text-align: justify;
+    display: grid;
+    padding-right: 8%;
 }
 
 .type-wrapper{

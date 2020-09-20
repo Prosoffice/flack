@@ -208,10 +208,11 @@ body{
     color: #e1f4f3;
 }
 
-.wrapper .main_container .top_navbar .menu li a.active::before,
+/* NOT RESPONSIVE ON MOBILE
+/* .wrapper .main_container .top_navbar .menu li a.active::before,
 .wrapper .main_container .top_navbar .menu li a:hover::before{
-    display: display;
-}
+    display: block;
+} */
 
 .wrapper .main_container .top_navbar .side_menu{
     display: flex;
