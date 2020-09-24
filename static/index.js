@@ -49,24 +49,9 @@ function updateDOM (name, chat, time){
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// When DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+
     // connect to websocket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port, { transports: ['websocket'] });
 
@@ -83,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
      socket.on('connect', () => {
          
-        // When form is submitted
+        // When channel form is submitted
         document.querySelector('#newChannel').onsubmit = () => {
 
             // who is creating this channel?
@@ -124,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     socket.on('channel created and added', data => {
 
-        // update the DOM
+        // update the DOM when a channel is created
         if (data !== 'duplicate'){
             const error = document.querySelector('.error')
             error.innerHTML = ""
@@ -202,10 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // CHANNEL JS
-    if (document.querySelector('.home')){
+    if (document.querySelector('.chats')){
 
         // This block ensures the user don`t submit an empty chat 
-    document.querySelector('.chat').addEventListener('keyup', function (event){
+        document.querySelector('.chat').addEventListener('keyup', function (event){
 
         // Get the character length on every keyup event
         const charLength = document.querySelector('.chat').value.length;

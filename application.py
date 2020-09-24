@@ -16,7 +16,10 @@ Bootstrap(app)
 
 
 USERS = []
-CHANNELS = {'general':{'link':'/channel/general', 'owner': 'default', 'chats':  [ {'name': 'Frank', 'chat': "I love you so much, Hi! this is message, i cant stop thinking about you, you make me laugh", 'time': '10pm'}]}}
+CHANNELS = {'general':{'link':'/channel/general', 'owner': 'default', 'chats':[ {'name': 'Frank', 'chat': "Hi!", 'time': '10pm'}]}}
+remember = {}
+
+
 
 SECRET_KEY = '83iarC2VG3MEjAKifififW'
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -38,10 +41,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    print("Login page-User has just been redirected here to the login page")
     form = ChannelForm()
-    print("The user`s name as session tells me is ", session.get('user'))
-    print("On index page all channels equals", CHANNELS)
     user = session.get('user')
     isChannel = False
     return render_template('index.html', form=form, user=user, channel=CHANNELS, isChannel=isChannel)
@@ -51,13 +51,10 @@ def index():
 def new_channel(data):
     new_channel = data['channel']
     channel_name = new_channel['name']
-    print("A new channel was sent from client, the name of the channel is ", channel_name)
     if channel_name not in CHANNELS:
         channel_link = new_channel['link']
         channel_owner = new_channel['owner']
         CHANNELS[channel_name] = {'link': channel_link, 'owner': channel_owner, 'chats':[]}
-        print("This new channel have just been appended to the CHANNEL mega list as one of the channals created here on the server")
-        print("Sending back the channel to the client to update without refresh")
         emit('channel created and added', CHANNELS, broadcast=True)
     elif channel_name in CHANNELS:
         emit('channel created and added', "duplicate", broadcast=True)
@@ -67,33 +64,38 @@ def new_channel(data):
 def login():
     form = LoginForm()
     display_name = form.display_name.data
+    print(remember)
     if request.method == 'POST':
-        print('valid')
-        if display_name not in USERS:
+        # This block remembers the users page before logging out, implying that this is a returning user.
+        if display_name in remember.keys():
             session['user'] = display_name
-            print("User attach to session")
+            return redirect(remember[display_name])
+        
+        # This if block is utilised if the visitor is a new user, which calls for appending to USERS list
+        elif display_name not in USERS:
+            session['user'] = display_name
             USERS.append(display_name)
-            print("User appended to users list")
-            print("Users list now ", USERS)
-            print("Redirecting user to login page now.....")
             return redirect('/')
         else:
-            print('User has been here before')
+            # This block is utilised if the user is not new and didn`t visit a channel before loggging out
             session['user'] = display_name
             return redirect('/')
     return render_template("login.html", form=form)
 
+
+# @socketio.on("remember page")
+# def remember_page(data):
+#     username = data['username']
+#     channel_link = data['channel_link']
+#     remember[username] = channel_link
+#     emit("Page stored", data)
 
 
 
 @app.route('/channel/<name>', methods=['GET', 'POST'])
 @login_required
 def channel(name):
-    print("Channel page- user is here in the channel page by name ", name)
-    if name in CHANNELS.keys():
-        print(name, "is in the mega channels list")
     form = ChannelForm()
-    print("On channels page all channels equals", CHANNELS)
     user = session.get('user')
     isChannel = True
     return render_template('test.html', CHANNELS=CHANNELS.get(name), channel=CHANNELS, c=name, user=user, form=form, isChannel=isChannel)
@@ -101,9 +103,6 @@ def channel(name):
 
 @socketio.on('new message')
 def new_message(data):
-    print("A new message data was just sent from the client to a channel named", data['channel'])
-    if data['channel'] in CHANNELS:
-        print("Approved, the channel is present here in the server")
     time = datetime.now().strftime("%-I:%M")
     channel_name = data['channel']
     chat = data['chat']
@@ -120,6 +119,13 @@ def new_message(data):
 def on_join(data):
     channel = data['channel']
     join_room(channel)
+    user = data['user']
+
+    remember[user] = f'channel/{channel}'
+    print('appended user to remember, about to print remeber')
+    print(remember)
+    print('it should be printed by now')
+
     # Send a message to client side that this very user joined this channel
     data['time'] = datetime.now().strftime("%-I:%M")
     data['message'] = ': joined this room' # The colon there serves as a placeholder for the users display name.
