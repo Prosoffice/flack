@@ -87,14 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // disable the button again
             document.querySelector('#submit').disabled = true;
-
+            
+            // Empty the input box after submission
             document.querySelector('#name').value = "";
 
-            
+            // remove the form box after submission
             document.querySelector(".box").classList.remove("show");
 
+            // remove the box shadow after submission
             document.querySelector('.bg_shadow').classList.remove("active");
-        
+
+            // show success message to imply creation of successful creation of channel
+            document.querySelector('.alert-success').style.display = 'block'
 
             // stop the form from submitting
             return false;
@@ -173,6 +177,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelector(".bg_shadow").classList.remove("active");
     });
 
+    var menus = document.querySelector('#channelList')
+    var lis = menus.querySelectorAll('.room')
+    lis.forEach(current => {
+        current.addEventListener('click', () => {
+            current.classList.add('active')
+            localStorage.setItem('active', current.classList);
+        })
+    })
+
+    
+
+
+    
+
 
 
 
@@ -207,11 +225,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         
     });
+
+    
+
     
 
     // Answers the question...What Channel is this please?
     var channel = document.querySelector('.bolt').dataset.room;
-    
+
+    // channel_class = channel.toLowerCase()
+    // console.log(channel_class)
+    // console.log(document.querySelector(`a.${channel_class}`).classList)
+
     // Answers the question......Who is this user?
     var user = document.querySelector('.new-chat').dataset.user;
 

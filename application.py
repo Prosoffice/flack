@@ -16,7 +16,7 @@ Bootstrap(app)
 
 
 USERS = []
-CHANNELS = {'general':{'link':'/channel/general', 'owner': 'default', 'chats':[ {'name': 'Frank', 'chat': "Hi!", 'time': '10pm'}]}}
+CHANNELS = {'general':{'link':'/channel/general', 'owner': 'default', 'class': 'general', 'chats':[ {'name': 'Frank', 'chat': "Hi!", 'time': '10pm'}]}}
 remember = {}
 
 
@@ -54,7 +54,8 @@ def new_channel(data):
     if channel_name not in CHANNELS:
         channel_link = new_channel['link']
         channel_owner = new_channel['owner']
-        CHANNELS[channel_name] = {'link': channel_link, 'owner': channel_owner, 'chats':[]}
+        class_name = (channel_name.replace(' ', '')).lower()
+        CHANNELS[channel_name] = {'link': channel_link, 'owner': channel_owner, 'chats':[], 'class': class_name}
         emit('channel created and added', CHANNELS, broadcast=True)
     elif channel_name in CHANNELS:
         emit('channel created and added', "duplicate", broadcast=True)
@@ -64,7 +65,6 @@ def new_channel(data):
 def login():
     form = LoginForm()
     display_name = form.display_name.data
-    print(remember)
     if request.method == 'POST':
         # This block remembers the users page before logging out, implying that this is a returning user.
         if display_name in remember.keys():
@@ -83,22 +83,14 @@ def login():
     return render_template("login.html", form=form)
 
 
-# @socketio.on("remember page")
-# def remember_page(data):
-#     username = data['username']
-#     channel_link = data['channel_link']
-#     remember[username] = channel_link
-#     emit("Page stored", data)
-
-
-
 @app.route('/channel/<name>', methods=['GET', 'POST'])
 @login_required
 def channel(name):
+    c = name
     form = ChannelForm()
     user = session.get('user')
     isChannel = True
-    return render_template('test.html', CHANNELS=CHANNELS.get(name), channel=CHANNELS, c=name, user=user, form=form, isChannel=isChannel)
+    return render_template('test.html', CHANNELS=CHANNELS.get(name), channel=CHANNELS, c=c, user=user, form=form, isChannel=isChannel)
 
 
 @socketio.on('new message')
@@ -122,9 +114,6 @@ def on_join(data):
     user = data['user']
 
     remember[user] = f'channel/{channel}'
-    print('appended user to remember, about to print remeber')
-    print(remember)
-    print('it should be printed by now')
 
     # Send a message to client side that this very user joined this channel
     data['time'] = datetime.now().strftime("%-I:%M")

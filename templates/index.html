@@ -24,13 +24,13 @@
                     </div>
                     <div class="profile_data">
                         <div class="name">{{ user }}</div>
-                        <div class="role">User</div>
+                        <div class="my-3"><a href="/"><i class="fa fa-home role" aria-hidden="true"></i></a></div>
                         <div class="btn create">Create channel</div>
                     </div>
                 </div>
                 <ul class="sidebar_menu" id="channelList">
                     {% for i in channel %}     
-                    <li><a href="{{ channel[i]['link'] }}" class="room">                 
+                    <li><a href="{{ channel[i]['link'] }}" class="room {{ channel[i]['class'] }}">                 
                         <div class="icon"><i class="fa fa-hashtag" aria-hidden="true"></i></div>
                         <div class="title">{{ i }}</div>
                     </a></li>
@@ -45,11 +45,11 @@
             <div class="un type-wrapper">
                 <div class="type-wrapper-inner">
                     <div class="input_box">
-                        <span class='new-chat'  data-user="{{ user }}">
+                        <span class='new-chat' data-user="{{ user }}">
                             <input type="text" placeholder="Message Channel here" data-user="{{ user }}" class="chat">
                            
                             <span class="bolt" data-room="{{ c }}"><i class="fa fa-bolt " aria-hidden="true"></i></span>
-                                <span class="send submit" name="submit" >
+                                <span class="send submit" name="submit">
                                     <i class="fa fa-paper-plane " aria-hidden="true"></i>
                                 </span>
                         </span>
@@ -70,9 +70,8 @@
 
                 <ul class="menu">
                     {% if isChannel %}
-                    <li><a href="/" class="home" data-isHome="True">Home</a></li>                   
-                    <li><a href="#" class="active channel-mobile">Channel</a></li>      
-                    <li><a href="https://github.com/Prosoffice">Developer</a></li>
+                    {% block channel_label %}{% endblock %}
+                    
 
                     {% else %}
                     <li><a href="/" class="active">Home</a></li>     
@@ -113,6 +112,9 @@
                 
                 {% block content %}
                 <div class="item">{{ user }}, Welcome to Flack, your anonimity is guaranteed, Please utilise the menu to create or join a group.</div>
+                <div class="alert alert-success mt-3">
+                    <strong>Success!</strong> Channel created, use the menu to navigate.
+                </div>
                 {% endblock %}
 
                 
@@ -130,5 +132,6 @@
     {% block script %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="{{url_for('static', filename='index.js')}}"></script>
+    {% block channel_script %}{% endblock %}
     {% endblock %}
 {% endblock %}

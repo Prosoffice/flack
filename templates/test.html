@@ -6,11 +6,19 @@
 {%endblock%}
 
 {% block title %}
-    {{ c }}
+    {{ c[0]|upper}}{{c[1:] }}
 {% endblock%}
 
 
+{% block channel_label %}
+    {{ c[0]|upper}}{{c[1:] }}
+{% endblock %}
+
 {% block content %}
+    <div class="alert alert-success mt-3">
+        <strong>Success!</strong> Channel created, use the menu to navigate.
+    </div>
+
     <div class="chat-page" >
         <div class="msg-inbox">
             <div class="chats">
@@ -40,6 +48,10 @@
 
         
     </div>
+{% endblock %}
+
+{% block channel_script %}
+<script src="{{url_for('static', filename='channel.js')}}"></script>
 {% endblock %}
 
 

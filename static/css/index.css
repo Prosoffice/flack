@@ -100,7 +100,7 @@ body{
     color: #fff;
     position: relative;
     margin-bottom: 1px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     /* text-decoration: none; */
 }
 
@@ -139,6 +139,7 @@ body{
 {
     display: block;
 }
+
 
 
 /* MAIN CONTENT */
@@ -386,6 +387,14 @@ body{
    font-size: 1.6rem;
 }
 
+
+.fa-home{
+    font-size: 3rem;
+}
+
+.alert-success{
+    display: none;
+}
 
 
 /* width */

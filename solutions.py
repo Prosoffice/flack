@@ -16,3 +16,6 @@ def solution(S):
 
 
 print(solution('aabbaba'))
+
+k = 'b'
+k.lo
